@@ -11,10 +11,18 @@ bindings for C and C++ libraries."""
 toolchain = {'name': 'CrayGNU', 'version': '17.12'}
 source_urls = ['http://sourceforge.net/projects/pyqt/files/sip/sip-%(version)s']
 sources = [SOURCELOWER_TAR_GZ]
-dependencies = [('PyExtensions', '3.6')]
+dependencies = [
+    #('cray-python/3.6.1.1', EXTERNAL_MODULE),
+    ('PyExtensions', '3.6')
+]
 
-configopts = "configure.py --bindir %(installdir)s/bin --incdir %(installdir)s/include "
+#preconfigopts = ' export PYTHON_VERSION=3.6.1; '
+#configopts = "configure.py --target-py-version=3.6 "
+configopts = "configure.py "
+configopts += "--bindir %(installdir)s/bin "
+configopts += "--incdir %(installdir)s/include "
 configopts += "--destdir %(installdir)s/lib/python3.6/site-packages "
+buildopts = 'CPPFLAGS="-DNDEBUG -I. `python3-config --includes`" '
 
 sanity_check_paths = {
     'files': ['bin/sip', 'include/sip.h'] +

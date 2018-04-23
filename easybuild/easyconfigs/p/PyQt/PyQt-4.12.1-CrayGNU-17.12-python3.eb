@@ -1,4 +1,5 @@
-easyblock = 'ConfigureMakePythonPackage'
+easyblock = 'ConfigureMake'
+#ko: easyblock = 'ConfigureMakePythonPackage'
 
 name = 'PyQt'
 version = '4.12.1'
@@ -14,12 +15,15 @@ sources = ['%(name)s4_gpl_x11-%(version)s.tar.gz']
 
 dependencies = [
     ('SIP', '4.19.8', versionsuffix),
-#    ('Qt', '4.8.5', '-GLib-2.44.0'),
+    # using system qt4
 ]
 
-configopts = "configure-ng.py --confirm-license"
-configopts += " --destdir=%(installdir)s/lib/python3.6/site-packages "
-configopts += " --no-sip-files"
+skipsteps = ['configure']
+prebuildopts  = 'python3 ./configure-ng.py --confirm-license '
+prebuildopts += '--destdir=%(installdir)s/lib/python3.6/site-packages '
+prebuildopts += '--no-sip-files && '
+prebuildopts += 'sed -i "s@`python3-config --prefix`/bin@%(installdir)s/bin@g" Makefile && '
+prebuildopts += 'sed -i "s@`python3-config --prefix`/lib@%(installdir)s/lib@g" Makefile && '
 
 options = {'modulename': '%(name)s%(version_major)s'}
 

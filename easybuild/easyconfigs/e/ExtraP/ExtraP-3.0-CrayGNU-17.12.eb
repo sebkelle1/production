@@ -13,12 +13,13 @@ source_urls = ['http://apps.fz-juelich.de/scalasca/releases/extra-p']
 sources = [SOURCELOWER_TAR_GZ]
 checksums = [ '4a5e6996be73aff870d2bde52f4aacd6' ]
 dependencies = [ 
-    # PyQt depens on SIP and PyExtensions
+    # PyQt depens on SIP, PyExtensions, cray-python3
     ('PyQt', '4.12.1', '-python3'), 
     ('Cube', '4.3.5'),
 ]
 
 configopts = ' CPPFLAGS="`python3-config --includes`" '
+#configopts += ' LDFLAGS=-L '
 
 sanity_check_paths = {
     'files': ['bin/extrap-modeler', 'lib/libextrap_python.a', 'share/input.txt'],
