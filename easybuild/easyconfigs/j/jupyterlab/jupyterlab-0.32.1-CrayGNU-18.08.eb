@@ -61,7 +61,7 @@ modextravars = {
     'JUPYTERLAB_DIR': "%(installdir)s/share/jupyter/lab/", 
 }
 
-postinstallcmds = ['export JUPYTERLAB_DIR=%(installdir)s/share/jupyter/lab/; export PYTHONPATH=$%(installdir)s/lib/python3.6/site-packages:$PYTHONPATH; %(installdir)s/bin/jupyter-labextension install -y @jupyterlab/hub-extension']
+postinstallcmds = ['module load jupyterhub/0.9.4-CrayGNU-18.08; export JUPYTERLAB_DIR=%(installdir)s/share/jupyter/lab/; export PYTHONPATH=%(installdir)s/lib/python3.6/site-packages:$PYTHONPATH; %(installdir)s/bin/jupyter-labextension install -y @jupyterlab/hub-extension']
 
 sanity_check_paths = {
     'files': [],
