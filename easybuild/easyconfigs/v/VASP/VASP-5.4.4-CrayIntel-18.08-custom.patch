@@ -1,6 +1,6 @@
 diff -Nru vasp-5.4.4/makefile.include vasp-5.4.4-custom/makefile.include
 --- vasp-5.4.4/makefile.include	1970-01-01 01:00:00.000000000 +0100
-+++ vasp-5.4.4-custom/makefile.include	2018-11-26 12:13:04.634577000 +0100
++++ vasp-5.4.4-custom/makefile.include	2018-11-26 17:25:01.923463000 +0100
 @@ -0,0 +1,57 @@
 +# Precompiler options
 +CPP_OPTIONS= -DHOST=\"LinuxIFC\"\
