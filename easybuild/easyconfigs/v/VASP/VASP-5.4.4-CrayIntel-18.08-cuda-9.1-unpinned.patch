@@ -1,0 +1,14 @@
+diff -Nru vasp-5.4.4.orig/src/CUDA/cuda_mem.cu vasp-5.4.4/src/CUDA/cuda_mem.cu
+--- vasp-5.4.4.orig/src/CUDA/cuda_mem.cu	2018-12-19 10:14:56.565215153 +0100
++++ vasp-5.4.4/src/CUDA/cuda_mem.cu	2018-12-19 10:15:58.779359433 +0100
+@@ -22,8 +22,8 @@
+ //use cudaFreeHost but instead register and unregister the
+ //memory ourself. This is advised for less recent MPI installations
+ //
+-#define NVPINNED
+-#define NVREGISTERSELF
++//#define NVPINNED
++//#define NVREGISTERSELF
+ 
+ extern "C"
+ int nvpinnedmalloc_C(void **ptr, size_t *size_)
