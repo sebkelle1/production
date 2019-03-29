@@ -1,5 +1,5 @@
 # contributed by Luca Marsella (CSCS)
-# older boost version based on newer toolchain Sebastian Keller
+# adapted for dom with CLE7 by Sebastian Keller
 name = 'Boost'
 version = "1.69.0"
 versionsuffix = '-python2'
@@ -8,7 +8,7 @@ homepage = 'http://www.boost.org/'
 description = """Boost provides free peer-reviewed portable C++ source
 libraries."""
 
-toolchain = {'name': 'CrayGNU', 'version': '18.08'}
+toolchain = {'name': 'CrayGNU', 'version': '19.03'}
 toolchainopts = {'pic': True, 'usempi': True, 'verbose': False}
 
 sources = ['%%(namelower)s_%s.tar.gz' % '_'.join(version.split('.'))]
@@ -18,9 +18,9 @@ configopts  = ' --with-python=$(EBROOTPYTHON)/bin/python --with-python-version=2
 configopts += ' --with-python-root=$(EBROOTPYTHON)/lib/python2.7'
 
 dependencies = [
-    ('bzip2', '1.0.6'),
-    ('zlib', '1.2.11'),
-    ('cray-python/2.7.15.1', EXTERNAL_MODULE),
+    #('bzip2', '1.0.6'),
+    #('zlib', '1.2.11'),
+    ('cray-python/2.7.15.6', EXTERNAL_MODULE),
 ]
 
 # CURRENTLY DISABLED, SINCE IT LEADS TO COMPATIBILITY ISSUES (e. g. with ParaView, HPX)
