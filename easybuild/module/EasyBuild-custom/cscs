@@ -35,7 +35,7 @@ set eb_config_dir          /apps/common/UES/jenkins/production/easybuild
 # EB_CUSTOM_REPOSITORY
 # the following variables should depend on it
 #
-# XDG_CONFIG_HOME
+# XDG_CONFIG_DIRS
 # EASYBUILD_ROBOT_PATHS
 # EASYBUILD_INCLUDE_EASYBLOCKS
 # EASYBUILD_EXTERNAL_MODULES_METADATA (if on cray)
@@ -76,6 +76,11 @@ if { [ string match *daint* $system ] || [ string match *dom* $system ] } {
     setenv EASYBUILD_RECURSIVE_MODULE_UNLOAD    0
 } elseif { [ string match *esch* $system ] } {
     setenv EASYBUILD_MODULE_NAMING_SCHEME       LowercaseModuleNamingScheme
+} elseif { [ string match *arolla* $system ] || [ string match *tsa* $system ] } {
+    setenv EASYBUILD_MODULES_TOOL               EnvironmentModules
+    setenv EASYBUILD_MODULE_NAMING_SCHEME       LowercaseModuleNamingScheme
+} elseif { [ string match *fulen* $system ] } {
+    setenv XDG_RUNTIME_DIR                      /dev/shm/$::env(USER)
 } else {
     setenv EASYBUILD_RECURSIVE_MODULE_UNLOAD    1
 }
@@ -107,7 +112,7 @@ if { ! [ info exists ::env(XDG_RUNTIME_DIR) ] } {
 if { [ info exists ::env(EASYBUILD_TMPDIR) ] } {
     setenv EASYBUILD_TMPDIR                     $::env(EASYBUILD_TMPDIR)
 } elseif { ! [ info exists ::env(XDG_RUNTIME_DIR) ] } {
-    setenv EASYBUILD_TMPDIR                     /tmp/easybuild/tmp
+    setenv EASYBUILD_TMPDIR                     /tmp/$::env(USER)/easybuild/tmp
 } else {
     setenv EASYBUILD_TMPDIR                     $::env(XDG_RUNTIME_DIR)/easybuild/tmp
 }
@@ -115,7 +120,7 @@ if { [ info exists ::env(EASYBUILD_TMPDIR) ] } {
 if { [ info exists ::env(EASYBUILD_BUILDPATH) ] } {
     setenv EASYBUILD_BUILDPATH                  $::env(EASYBUILD_BUILDPATH)
 } elseif { ! [ info exists ::env(XDG_RUNTIME_DIR) ] } {
-    setenv EASYBUILD_BUILDPATH                  /tmp/easybuild/build
+    setenv EASYBUILD_BUILDPATH                  /tmp/$::env(USER)/easybuild/build
 } else {
     setenv EASYBUILD_BUILDPATH                  $::env(XDG_RUNTIME_DIR)/easybuild/build
 }
